@@ -11,7 +11,7 @@ const app = express();
 dbConnection();
 
 // Cors
-var allowedOrigin = [];
+var allowedOrigin = ["https://attendace-api.vercel.app"];
 const corsOptions = {
   origin: function (origin, callback) {
     if (allowedOrigin.indexOf(origin) !== -1 || !origin) {
