@@ -45,6 +45,9 @@ app.use(express.json());
 // Routes
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/events", require("./routes/events.js"));
+app.get("/", (req, res) => {
+  res.send("Hello");
+});
 app.get("/*", (req, res) => {
   res.sendFile(path.join(__dirname + "/public/index.html"));
 });
