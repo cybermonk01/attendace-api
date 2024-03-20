@@ -11,7 +11,10 @@ const app = express();
 dbConnection();
 
 // Cors
-var allowedOrigin = ["https://attendace-api.vercel.app"];
+var allowedOrigin = [
+  "https://attendance-client-five.vercel.app",
+  "http://localhost:3000",
+];
 const corsOptions = {
   origin: function (origin, callback) {
     if (allowedOrigin.indexOf(origin) !== -1 || !origin) {
