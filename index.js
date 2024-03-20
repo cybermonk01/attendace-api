@@ -11,7 +11,17 @@ const app = express();
 dbConnection();
 
 // Cors
-app.use(cors());
+var allowedOrigin = [];
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (allowedOrigin.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error("CORS error"));
+    }
+  },
+};
+app.use(cors(corsOptions));
 
 // Public path
 app.use(express.static("public"));

@@ -1,5 +1,5 @@
 {
-  "name": "mern-calendar",
+  "name": "attendance-server",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,7 +9,7 @@
     "start": "node index.js"
   },
   "keywords": [],
-  "author": "Juan Pablo Machado",
+  "author": "Ashutosh Singh",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
