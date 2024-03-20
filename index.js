@@ -3,6 +3,7 @@ require("dotenv").config();
 const dbConnection = require("./database/config");
 const cors = require("cors");
 const path = require("path");
+const { createProxyMiddleware } = require("http-proxy-middleware");
 
 // Server
 const app = express();
@@ -11,21 +12,30 @@ const app = express();
 dbConnection();
 
 // Cors
-var allowedOrigin = [
-  "https://attendance-client-five.vercel.app",
-  "http://localhost:3000",
-];
-const corsOptions = {
-  origin: function (origin, callback) {
-    if (allowedOrigin.indexOf(origin) !== -1 || !origin) {
-      callback(null, true);
-    } else {
-      callback(new Error("CORS error"));
-    }
-  },
-};
-app.use(cors(corsOptions));
+// var allowedOrigin = [
+//   "https://attendance-client-five.vercel.app",
+//   "http://localhost:3000",
+// ];
+// const corsOptions = {
+//   origin: function (origin, callback) {
+//     if (allowedOrigin.indexOf(origin) !== -1 || !origin) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error("CORS error"));
+//     }
+//   },
+// };
+// app.use(cors(corsOptions));
 
+const proxyOptions = {
+  target: "http://localhost:3000", // Replace with the target API URL
+  changeOrigin: true, // Needed for virtual hosted sites
+  // Other options as needed
+};
+
+// Create the proxy middleware
+const proxy = createProxyMiddleware(proxyOptions);
+app.use("/api", proxy);
 // Public path
 app.use(express.static("public"));
 
